@@ -52,7 +52,7 @@ class _ExpandableEducationCardState extends State<ExpandableEducationCard> {
                   Expanded(
                     child: Text(
                       widget.institution,
-                      style: AppTextStyles.heading.copyWith(fontSize: 18),
+                      style: AppTextStyles.heading(context).copyWith(fontSize: 18), // ✅ pakai context
                     ),
                   ),
                   Icon(
@@ -64,25 +64,25 @@ class _ExpandableEducationCardState extends State<ExpandableEducationCard> {
               const SizedBox(height: 8),
               Text(
                 widget.major,
-                style: AppTextStyles.body.copyWith(fontSize: 16),
+                style: AppTextStyles.body(context).copyWith(fontSize: 16), // ✅ pakai context
               ),
               const SizedBox(height: 4),
               Text(
                 widget.years,
-                style: AppTextStyles.body.copyWith(color: Colors.grey),
+                style: AppTextStyles.body(context).copyWith(color: Colors.grey), // ✅ pakai context
               ),
               const SizedBox(height: 12),
               AnimatedCrossFade(
                 firstChild: Text(
                   widget.description,
-                  style: AppTextStyles.body.copyWith(fontSize: 14),
+                  style: AppTextStyles.body(context).copyWith(fontSize: 14), // ✅ pakai context
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.justify,
                 ),
                 secondChild: Text(
                   widget.description,
-                  style: AppTextStyles.body.copyWith(fontSize: 14),
+                  style: AppTextStyles.body(context).copyWith(fontSize: 14), // ✅ pakai context
                   textAlign: TextAlign.justify,
                 ),
                 crossFadeState: isExpanded

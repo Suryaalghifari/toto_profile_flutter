@@ -32,7 +32,7 @@ class AnimatedCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   title,
-                  style: AppTextStyles.body.copyWith(fontSize: 18),
+                  style: AppTextStyles.body(context).copyWith(fontSize: 18), // ✅ Pakai (context)
                 ),
               ),
               const Icon(Icons.arrow_forward_ios, size: 18),

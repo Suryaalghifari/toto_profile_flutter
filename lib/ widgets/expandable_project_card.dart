@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:toto_profile_flutter/constants/app_colors.dart';
 import 'package:toto_profile_flutter/constants/app_text_styles.dart';
 import 'package:toto_profile_flutter/pages/full_screen_image_page.dart';
-import 'package:toto_profile_flutter/routes/page_transition.dart'; // ✅ Import custom transition
+import 'package:toto_profile_flutter/routes/page_transition.dart';
 
 class ExpandableProjectCard extends StatefulWidget {
   final String imagePath;
@@ -44,7 +44,7 @@ class _ExpandableProjectCardState extends State<ExpandableProjectCard> {
         ),
         clipBehavior: Clip.antiAlias,
         child: AnimatedCrossFade(
-          firstChild: _buildCollapsed(),
+          firstChild: _buildCollapsed(context),
           secondChild: _buildExpanded(context),
           crossFadeState: isExpanded
               ? CrossFadeState.showSecond
@@ -55,7 +55,7 @@ class _ExpandableProjectCardState extends State<ExpandableProjectCard> {
     );
   }
 
-  Widget _buildCollapsed() {
+  Widget _buildCollapsed(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Row(
@@ -67,10 +67,10 @@ class _ExpandableProjectCardState extends State<ExpandableProjectCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(widget.projectName,
-                    style: AppTextStyles.heading.copyWith(fontSize: 18)),
+                    style: AppTextStyles.heading(context).copyWith(fontSize: 18)),
                 const SizedBox(height: 4),
                 Text('${widget.projectType} • ${widget.years}',
-                    style: AppTextStyles.body.copyWith(color: Colors.grey)),
+                    style: AppTextStyles.body(context).copyWith(color: Colors.grey)),
               ],
             ),
           ),
@@ -111,13 +111,13 @@ class _ExpandableProjectCardState extends State<ExpandableProjectCard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(widget.projectName,
-                  style: AppTextStyles.heading.copyWith(fontSize: 18)),
+                  style: AppTextStyles.heading(context).copyWith(fontSize: 18)),
               const SizedBox(height: 4),
               Text('${widget.projectType} • ${widget.years}',
-                  style: AppTextStyles.body.copyWith(color: Colors.grey)),
+                  style: AppTextStyles.body(context).copyWith(color: Colors.grey)),
               const SizedBox(height: 12),
               Text(widget.description,
-                  style: AppTextStyles.body.copyWith(fontSize: 14),
+                  style: AppTextStyles.body(context).copyWith(fontSize: 14),
                   textAlign: TextAlign.justify),
               const SizedBox(height: 12),
               Align(

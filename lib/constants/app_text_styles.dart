@@ -1,21 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart'; // <<< tambahkan ini
+import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
 class AppTextStyles {
-  static final TextStyle heading = GoogleFonts.poppins(
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
-    color: AppColors.textPrimary,
-  );
+  // Heading
+  static TextStyle heading(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return GoogleFonts.poppins(
+      fontSize: 24,
+      fontWeight: FontWeight.bold,
+      color: isDark ? Colors.white : AppColors.textPrimary, // 🔥 adaptif
+    );
+  }
 
-  static final TextStyle body = GoogleFonts.poppins(
-    fontSize: 18,
-    color: AppColors.textPrimary,
-  );
+  // Body Text
+  static TextStyle body(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return GoogleFonts.poppins(
+      fontSize: 18,
+      color: isDark ? Colors.white70 : AppColors.textPrimary, // 🔥 adaptif
+    );
+  }
 
-  static final TextStyle drawerTitle = GoogleFonts.poppins(
-    fontSize: 20,
-    color: AppColors.white,
-  );
+  // Drawer Title (biasanya background sudah colored, tetap putih)
+  static TextStyle drawerTitle() {
+    return GoogleFonts.poppins(
+      fontSize: 20,
+      color: AppColors.white,
+    );
+  }
 }

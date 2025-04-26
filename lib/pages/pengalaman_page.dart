@@ -1,24 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:toto_profile_flutter/constants/app_colors.dart';
 import 'package:toto_profile_flutter/constants/app_text_styles.dart';
-import 'package:toto_profile_flutter/ widgets/app_drawer.dart';
-import 'package:toto_profile_flutter/ widgets/expandable_project_card.dart'; // ✅ Import widget modular kita
+import 'package:toto_profile_flutter/ widgets/app_drawer.dart'; // ✅ Fix typo import
+import 'package:toto_profile_flutter/ widgets/expandable_project_card.dart'; // ✅ Import expandable project
+import 'package:toto_profile_flutter/utils/responsive.dart'; // ✅ Import helper responsive
 
 class PengalamanPage extends StatelessWidget {
   const PengalamanPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pengalaman Kerja', style: AppTextStyles.heading),
-        backgroundColor: AppColors.mintGreen,
+        title: Text(
+          'Pengalaman Kerja',
+          style: AppTextStyles.heading(context).copyWith(
+            fontSize: getResponsiveFontSize(context, 22),
+          ),
+        ),
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
       drawer: const AppDrawer(),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        padding: EdgeInsets.symmetric(
+          horizontal: getResponsivePadding(context, 20),
+          vertical: getResponsivePadding(context, 16),
+        ),
         child: Column(
           children: const [
+            // ✨ Project Cards dengan ExpandableProjectCard
+
             ExpandableProjectCard(
               imagePath: 'assets/images/project/dashboard.png',
               projectName: 'Phone Store Dashboard',
@@ -29,6 +42,7 @@ class PengalamanPage extends StatelessWidget {
                   'Menampilkan grafik penjualan, kategori produk, dan tabel pelanggan secara real-time.',
             ),
             SizedBox(height: 16),
+
             ExpandableProjectCard(
               imagePath: 'assets/images/project/form_login.png',
               projectName: 'Login Page - Mobile Legends',
@@ -39,6 +53,7 @@ class PengalamanPage extends StatelessWidget {
                   'Fokus pada layout, UI centering, dan tampilan modern responsif.',
             ),
             SizedBox(height: 16),
+
             ExpandableProjectCard(
               imagePath: 'assets/images/project/kalkulator.png',
               projectName: 'Kalkulator Web',
@@ -49,6 +64,7 @@ class PengalamanPage extends StatelessWidget {
                   'Mendukung operasi matematika dasar dengan desain clean dan tombol animasi.',
             ),
             SizedBox(height: 16),
+
             ExpandableProjectCard(
               imagePath: 'assets/images/project/tetris.png',
               projectName: 'Tetris Game (Python)',
